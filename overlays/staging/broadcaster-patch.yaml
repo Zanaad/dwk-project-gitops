@@ -1,0 +1,14 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: broadcaster
+spec:
+  template:
+    spec:
+      containers:
+      - name: broadcaster
+        env:
+        - name: NATS_URL
+          value: "nats://my-nats.todo-staging.svc.cluster.local:4222"
+        - name: DISCORD_WEBHOOK_URL
+          value: ""  # Disable Discord in staging - broadcaster will only log

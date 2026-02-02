@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: todo-production
+  namespace: argocd
+spec:
+  destination:
+    namespace: todo
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: overlays/prod
+    repoURL: git@github.com:Zanaad/dwk-project-gitops.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      enabled: true
+      prune: true
+      selfHeal: true

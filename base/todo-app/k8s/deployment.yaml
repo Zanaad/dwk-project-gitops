@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-app
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: todo-app
+  template:
+    metadata:
+      labels:
+        app: todo-app
+    spec:
+      volumes:
+        - name: todo-volume
+          persistentVolumeClaim:
+            claimName: todo-pvc
+      containers:
+        - name: todo-app
+          image: TODO_APP_IMAGE
+          volumeMounts:
+            - name: todo-volume
+              mountPath: /var/lib/data
+          ports:
+          - containerPort: 3000
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
+            limits:
+              cpu: "200m"
+              memory: "256Mi"
+          env:
+            - name: PORT
+              value: "3000"
+            - name: TODO_BACKEND_URL
+              value: "http://todo-backend-svc:3000"
+            - name: IMAGE_DIR
+              value: "/var/lib/data"
+            - name: CACHE_DURATION_MS
+              valueFrom:
+                configMapKeyRef:
+                  name: todo-config
+                  key: CACHE_DURATION_MS
+            - name: IMAGE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: todo-config
+                  key: IMAGE_URL

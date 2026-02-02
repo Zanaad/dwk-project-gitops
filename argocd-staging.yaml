@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: todo-staging
+  namespace: argocd
+spec:
+  destination:
+    namespace: todo-staging
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: overlays/staging
+    repoURL: git@github.com:Zanaad/dwk-project-gitops.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      enabled: true
+      prune: true
+      selfHeal: true

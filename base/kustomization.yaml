@@ -1,0 +1,7 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - todo-backend/k8s
+  - todo-app/k8s
+  - todo-job/k8s
+  - broadcaster/k8s

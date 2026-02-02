@@ -1,0 +1,78 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: postgres-backup
+spec:
+  schedule: "0 0 * * *"  # Daily at midnight
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: backup
+              image: google/cloud-sdk:alpine
+              env:
+                - name: POSTGRES_HOST
+                  value: "postgres-svc"
+                - name: POSTGRES_USER
+                  valueFrom:
+                    secretKeyRef:
+                      name: postgres-secret
+                      key: POSTGRES_USER
+                - name: POSTGRES_PASSWORD 
+                  valueFrom:
+                    secretKeyRef:
+                      name: postgres-secret
+                      key: POSTGRES_PASSWORD
+                - name: POSTGRES_DB
+                  valueFrom:
+                    secretKeyRef:
+                      name: postgres-secret
+                      key: POSTGRES_DB
+                - name: GOOGLE_APPLICATION_CREDENTIALS
+                  value: /var/secrets/google/key.json
+                - name: BUCKET_NAME
+                  value: "dwk-todo-backups-2026"
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  set -e
+                  echo "Starting backup at $(date)"
+                  
+                  # Install postgresql-client
+                  apk add --no-cache postgresql-client
+                  
+                  # Create backup filename with timestamp
+                  BACKUP_FILE="todo-backup-$(date +%Y%m%d-%H%M%S).sql"
+                  
+                  # Perform backup
+                  PGPASSWORD=$POSTGRES_PASSWORD pg_dump \
+                    -h $POSTGRES_HOST \
+                    -U $POSTGRES_USER \
+                    -d $POSTGRES_DB \
+                    > /tmp/$BACKUP_FILE
+                  
+                  echo "Backup created: $BACKUP_FILE"
+                  
+                  # Upload to GCS
+                  gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS
+                  gsutil cp /tmp/$BACKUP_FILE gs://$BUCKET_NAME/
+                  
+                  echo "Backup uploaded successfully to gs://$BUCKET_NAME/$BACKUP_FILE"
+                  
+                  # Clean up local file
+                  rm /tmp/$BACKUP_FILE
+                  
+                  echo "Backup completed at $(date)"
+              volumeMounts:
+                - name: gcs-key
+                  mountPath: /var/secrets/google
+                  readOnly: true
+          volumes:
+            - name: gcs-key
+              secret:
+                secretName: gcs-backup-key

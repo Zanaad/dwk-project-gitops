@@ -1,0 +1,14 @@
+apiVersion: batch/v1 
+kind: CronJob
+metadata:
+  name: todo-cronjob
+spec:
+  schedule: "0 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: todo-cronjob
+              image: TODO_JOB_IMAGE
+          restartPolicy: OnFailure

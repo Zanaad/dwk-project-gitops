@@ -1,0 +1,15 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-backend 
+spec:
+  selector:
+    matchLabels:
+      app: todo-backend
+  template:
+    spec:
+      containers:
+      - name: todo-backend
+        env:
+        - name: NATS_URL
+          value: "nats://my-nats.todo-staging.svc.cluster.local:4222"

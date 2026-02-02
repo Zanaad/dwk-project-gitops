@@ -1,0 +1,21 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: todo
+
+resources:
+  - ../../base
+
+images:
+  - name: BROADCASTER_IMAGE
+    newName: europe-west3-docker.pkg.dev/dwk-gke-485813/todo-project/broadcaster
+    newTag: prod-latest
+  - name: TODO_APP_IMAGE
+    newName: europe-west3-docker.pkg.dev/dwk-gke-485813/todo-project/todo-app
+    newTag: prod-latest
+  - name: TODO_BACKEND_IMAGE
+    newName: europe-west3-docker.pkg.dev/dwk-gke-485813/todo-project/todo-backend
+    newTag: prod-latest
+  - name: TODO_JOB_IMAGE
+    newName: europe-west3-docker.pkg.dev/dwk-gke-485813/todo-project/todo-cronjob
+    newTag: prod-latest
