@@ -25,3 +25,15 @@ images:
 - name: TODO_JOB_IMAGE
   newName: europe-west3-docker.pkg.dev/dwk-gke-485813/todo-project/todo-cronjob
   newTag: staging-3ab7dee24dfb155cd9b78cf2518f926fa573e1fd
+- name: broadcaster
+  newName: europe-west3-docker.pkg.dev/dwk-gke-485813/dwk-project/broadcaster
+  newTag: staging-8e30e8f902967048a4477165dfa2a824b947c236
+- name: todo-app
+  newName: europe-west3-docker.pkg.dev/dwk-gke-485813/dwk-project/todo-app
+  newTag: staging-8e30e8f902967048a4477165dfa2a824b947c236
+- name: todo-backend
+  newName: europe-west3-docker.pkg.dev/dwk-gke-485813/dwk-project/todo-backend
+  newTag: staging-8e30e8f902967048a4477165dfa2a824b947c236
+- name: todo-job
+  newName: europe-west3-docker.pkg.dev/dwk-gke-485813/dwk-project/todo-cronjob
+  newTag: staging-8e30e8f902967048a4477165dfa2a824b947c236
