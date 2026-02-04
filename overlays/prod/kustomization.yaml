@@ -9,25 +9,13 @@ resources:
 images:
 - name: BROADCASTER_IMAGE
   newName: europe-west3-docker.pkg.dev/dwk-gke-485813/todo-project/broadcaster
-  newTag: prod-latest
+  newTag: v1.0.0
 - name: TODO_APP_IMAGE
   newName: europe-west3-docker.pkg.dev/dwk-gke-485813/todo-project/todo-app
-  newTag: prod-latest
+  newTag: v1.0.0
 - name: TODO_BACKEND_IMAGE
   newName: europe-west3-docker.pkg.dev/dwk-gke-485813/todo-project/todo-backend
-  newTag: prod-latest
+  newTag: v1.0.0
 - name: TODO_JOB_IMAGE
   newName: europe-west3-docker.pkg.dev/dwk-gke-485813/todo-project/todo-cronjob
-  newTag: prod-latest
-- name: broadcaster
-  newName: europe-west3-docker.pkg.dev/dwk-gke-485813/dwk-project/broadcaster
-  newTag: v1.0.0
-- name: todo-app
-  newName: europe-west3-docker.pkg.dev/dwk-gke-485813/dwk-project/todo-app
-  newTag: v1.0.0
-- name: todo-backend
-  newName: europe-west3-docker.pkg.dev/dwk-gke-485813/dwk-project/todo-backend
-  newTag: v1.0.0
-- name: todo-job
-  newName: europe-west3-docker.pkg.dev/dwk-gke-485813/dwk-project/todo-cronjob
   newTag: v1.0.0

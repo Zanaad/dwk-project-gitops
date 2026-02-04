@@ -4,7 +4,7 @@ Infrastructure as Code and Kubernetes manifests for the Todo Project, following 
 
 **Related Repository:** [dwk-project-code](https://github.com/Zanaad/dwk-project-code) - Application source code and CI/CD workflows
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 dwk-project-gitops/
@@ -24,11 +24,10 @@ dwk-project-gitops/
 │   └── prod/                  # Production environment overlays
 │       └── kustomization.yaml # Production patches and image tags
 ├── argocd-staging.yaml        # ArgoCD Application for staging
-├── argocd-production.yaml      # ArgoCD Application for production
-└── key.txt                     # SSH key for ArgoCD repository access
+└── argocd-production.yaml     # ArgoCD Application for production
 ```
 
-## 🏗️ Services Overview
+## Services Overview
 
 ### Base Manifests
 
@@ -79,7 +78,7 @@ Kustomize overlays apply environment-specific patches:
 - Full NATS integration
 - Namespace: `todo`
 
-## 🔄 GitOps Workflow
+## GitOps Workflow
 
 ### How It Works
 
@@ -96,7 +95,7 @@ The CI/CD pipeline automatically updates image tags:
 - **Staging:** `overlays/staging/kustomization.yaml` - tagged as `staging-{commit-sha}`
 - **Production:** `overlays/prod/kustomization.yaml` - tagged as `v{major}.{minor}.{patch}`
 
-## 📋 ArgoCD Applications
+## ArgoCD Applications
 
 ### Staging Application (`argocd-staging.yaml`)
 
@@ -128,38 +127,7 @@ Deploy to cluster:
 kubectl apply -f argocd-production.yaml
 ```
 
-## 🔐 Secrets Management
-
-### Encrypted Secrets (SOPS)
-
-Some secrets are encrypted with SOPS:
-
-- `base/broadcaster/k8s/secret.enc.yaml` - Discord webhook
-- `base/todo-backend/k8s/secret.enc.yaml` - Database credentials
-
-## 🚀 Deployment Commands
-
-### Apply Staging
-
-```bash
-# Using kubectl + Kustomize
-kubectl apply -k overlays/staging
-
-# Or let ArgoCD handle it
-kubectl apply -f argocd-staging.yaml
-```
-
-### Apply Production
-
-```bash
-# Using kubectl + Kustomize
-kubectl apply -k overlays/prod
-
-# Or let ArgoCD handle it
-kubectl apply -f argocd-production.yaml
-```
-
-## 📝 Kustomize Patterns
+## Kustomize Patterns
 
 ### Base Configuration
 
