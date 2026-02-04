@@ -26,14 +26,14 @@ images:
   newName: europe-west3-docker.pkg.dev/dwk-gke-485813/todo-project/todo-cronjob
   newTag: staging-3ab7dee24dfb155cd9b78cf2518f926fa573e1fd
 - name: broadcaster
-  newName: europe-west3-docker.pkg.dev/dwk-gke-485813/dwk-project/broadcaster
-  newTag: staging-9ae8abe7c505e9a28c28184666e708d899f49b24
+  newName: europe-west3-docker.pkg.dev/dwk-gke-485813/todo-project/broadcaster
+  newTag: staging-eec6dd4319d916444d72400044afb50d7adf8e4d
 - name: todo-app
-  newName: europe-west3-docker.pkg.dev/dwk-gke-485813/dwk-project/todo-app
-  newTag: staging-9ae8abe7c505e9a28c28184666e708d899f49b24
+  newName: europe-west3-docker.pkg.dev/dwk-gke-485813/todo-project/todo-app
+  newTag: staging-eec6dd4319d916444d72400044afb50d7adf8e4d
 - name: todo-backend
-  newName: europe-west3-docker.pkg.dev/dwk-gke-485813/dwk-project/todo-backend
-  newTag: staging-9ae8abe7c505e9a28c28184666e708d899f49b24
+  newName: europe-west3-docker.pkg.dev/dwk-gke-485813/todo-project/todo-backend
+  newTag: staging-eec6dd4319d916444d72400044afb50d7adf8e4d
 - name: todo-job
-  newName: europe-west3-docker.pkg.dev/dwk-gke-485813/dwk-project/todo-cronjob
-  newTag: staging-9ae8abe7c505e9a28c28184666e708d899f49b24
+  newName: europe-west3-docker.pkg.dev/dwk-gke-485813/todo-project/todo-cronjob
+  newTag: staging-eec6dd4319d916444d72400044afb50d7adf8e4d
