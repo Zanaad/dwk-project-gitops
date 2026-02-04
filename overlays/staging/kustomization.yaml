@@ -15,16 +15,16 @@ patches:
 images:
 - name: BROADCASTER_IMAGE
   newName: europe-west3-docker.pkg.dev/dwk-gke-485813/todo-project/broadcaster
-  newTag: staging-3ab7dee24dfb155cd9b78cf2518f926fa573e1fd
+  newTag: staging-20717fb2b79976c9cdf10b4ef2f25adc0df86fec
 - name: TODO_APP_IMAGE
   newName: europe-west3-docker.pkg.dev/dwk-gke-485813/todo-project/todo-app
-  newTag: staging-3ab7dee24dfb155cd9b78cf2518f926fa573e1fd
+  newTag: staging-20717fb2b79976c9cdf10b4ef2f25adc0df86fec
 - name: TODO_BACKEND_IMAGE
   newName: europe-west3-docker.pkg.dev/dwk-gke-485813/todo-project/todo-backend
-  newTag: staging-3ab7dee24dfb155cd9b78cf2518f926fa573e1fd
+  newTag: staging-20717fb2b79976c9cdf10b4ef2f25adc0df86fec
 - name: TODO_JOB_IMAGE
   newName: europe-west3-docker.pkg.dev/dwk-gke-485813/todo-project/todo-cronjob
-  newTag: staging-3ab7dee24dfb155cd9b78cf2518f926fa573e1fd
+  newTag: staging-20717fb2b79976c9cdf10b4ef2f25adc0df86fec
 - name: broadcaster
   newName: europe-west3-docker.pkg.dev/dwk-gke-485813/todo-project/broadcaster
   newTag: staging-eec6dd4319d916444d72400044afb50d7adf8e4d
